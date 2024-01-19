@@ -1,0 +1,30 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type DataPoint {
+  createdAt: DateTime!
+  id: Int!
+  term: Term!
+  termId: Int!
+  updatedAt: DateTime!
+  x: Int!
+  y: Int!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  randomDataPoints(count: Int!, termId: Int!): [DataPoint!]!
+  term(id: Int!): Term!
+  terms: [Term!]!
+}
+
+type Term {
+  dataPoints(useRandomData: Boolean = false): [DataPoint!]!
+  id: Int!
+  name: String!
+}

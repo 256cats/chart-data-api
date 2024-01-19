@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model DataPoint {
+  id        Int      @id @default(autoincrement())
+  x         Int
+  y         Int
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @map("updated_at") @db.Timestamp(0)
+  termId    Int
+  term      Term     @relation(fields: [termId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+}
+
+model Term {
+  id         Int         @id @default(autoincrement())
+  name       String
+  dataPoints DataPoint[]
+}
